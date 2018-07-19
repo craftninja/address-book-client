@@ -7,7 +7,6 @@ export default class Simple extends PureComponent {
   constructor() {
     super();
 
-    // Update the items so they have an onClick handler to change the current page
     this.navItems = pageListItems.map((item) => {
       if (item.divider) {
         return item;
@@ -15,7 +14,7 @@ export default class Simple extends PureComponent {
 
       return {
         ...item,
-        onClick: () => this.setPage(item.key, item.primaryText),
+        onClick: () => this.setPage(item.key, item.primaryText, item.content),
       };
     });
 
@@ -23,10 +22,11 @@ export default class Simple extends PureComponent {
       renderNode: null,
       key: pageListItems[0].key,
       page: pageListItems[0].primaryText,
+      content: pageListItems[0].content,
     };
   }
 
-  setPage = (key, page) => {
+  setPage = (key, page, content) => {
     this.navItems = this.navItems.map((item) => {
       if (item.divider) {
         return item;
@@ -35,7 +35,7 @@ export default class Simple extends PureComponent {
       return { ...item, active: item.key === key };
     });
 
-    this.setState({ key, page });
+    this.setState({ key, page, content });
   };
 
   handleShow = () => {
@@ -43,7 +43,7 @@ export default class Simple extends PureComponent {
   };
 
   render() {
-    const { page } = this.state;
+    const { content, page } = this.state;
     return (
       <div>
         <DialogContainer
@@ -68,7 +68,7 @@ export default class Simple extends PureComponent {
           >
             <h2 className="md-cell md-cell--12">{page}</h2>
             <section className="md-text-container md-cell md-cell--12">
-
+              {content}
             </section>
           </NavigationDrawer>
         </DialogContainer>
