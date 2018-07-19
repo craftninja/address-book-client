@@ -1,11 +1,11 @@
 import React from 'react';
 import { FontIcon } from 'react-md';
-import Businesses from '../Businesses';
-import People from '../People';
-import Search from '../Search';
+import BusinessesPage from '../BusinessesPage';
+import PeoplePage from '../PeoplePage';
+import SearchPage from '../SearchPage';
 
 export default [{
-  content: <Search/>,
+  content: <SearchPage/>,
   key: 'search',
   primaryText: 'Search',
   leftIcon: <FontIcon>search</FontIcon>,
@@ -13,12 +13,12 @@ export default [{
 },
 { key: 'divider', divider: true },
 {
-  content: <People/>,
+  content: <PeoplePage/>,
   key: 'people',
   primaryText: 'My Saved People',
   leftIcon: <FontIcon>people</FontIcon>,
 }, {
-  content: <Businesses/>,
+  content: <BusinessesPage/>,
   key: 'business',
   primaryText: 'My Saved Businesses',
   leftIcon: <FontIcon>business</FontIcon>,

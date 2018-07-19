@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-export default class Businesses extends Component {
+export default class BusinessesPage extends Component {
   render() {
     return(
       <p>it's business time</p>
