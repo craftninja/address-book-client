@@ -16,3 +16,6 @@
         ```
 
         Once you get a good red by running `yarn test`, change false to true.
+1. Add react-md and modify the Simple Navigation Drawer
+    * [react-md simple setup](https://github.com/mlaursen/react-md/tree/master/examples/with-create-react-app)
+    * [Simple Navagation Drawer](https://react-md.mlaursen.com/components/navigation-drawers#simple-example)
