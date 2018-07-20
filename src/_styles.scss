@@ -40,15 +40,4 @@ $sizes: (
     padding-left: 0;
     padding-right: 0;
   }
-
-  &__fake-result {
-    height: 200px;
-    position: relative;
-
-    &__maps {
-      bottom: 8px;
-      left: 8px;
-      position: absolute;
-    }
-  }
 }

@@ -2,19 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Paper } from 'react-md';
 
-const SearchResult = ({ index, value }) => {
-  let children;
-  if (index === 0) {
-    children = (
-      <span className="toolbar-search__fake-result__maps md-text--secondary">
-        {`Map results for ${value}`}
-      </span>
-    );
-  }
-
+const SearchResult = ({ index, value, company }) => {
   return (
-    <Paper className="md-cell md-cell--12 toolbar-search__fake-result md-background--card">
-      {children}
+    <Paper
+      className="md-cell md-cell--12 toolbar-search__result md-background--card"
+    >
+      <p>{company.title}</p>
     </Paper>
   );
 };

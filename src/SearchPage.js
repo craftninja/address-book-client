@@ -1,7 +1,7 @@
 /* eslint-disable react/no-array-index-key */
 import React, { PureComponent } from 'react';
 import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
-import { Toolbar } from 'react-md';
+import { Paper, Toolbar } from 'react-md';
 
 import './_styles.scss';
 import './SearchPage.css';
@@ -11,7 +11,7 @@ import Search from './Search';
 import SearchResult from './SearchResult';
 
 export default class SearchPage extends PureComponent {
-  state = { searching: false, search: '', results: null };
+  state = { searching: false, search: '', results: null, companies: [] };
   startSearching = () => {
     this.setState({ searching: true });
   };
@@ -24,30 +24,37 @@ export default class SearchPage extends PureComponent {
     this.setState({ search: '' });
   };
 
-  handleChange = (value) => {
+  handleChange = async (value) => {
     this.setState({ search: value });
-  };
+    if (value.length < 3) { return }
 
-  handleKeyDown = (e) => {
-    if (e.key === 'Enter') {
-      e.preventDefault();
-      this.search(this.state.search);
-    }
-  };
+    const companies = await fetch(`http://localhost:3001/search?companies[name]=${value}`, {
+      mode: "cors",
+    })
+      .then(function(response) {
+        return response.json();
+      })
+      .then(function(companies) {
+        return companies
+      }).catch(error => console.log("ERROR! ", error));
 
-  handleAutocomplete = (value) => {
-    if (this.state.search === value) {
-      return;
-    }
-
-    this.search(value);
+    this.setState({ companies });
+    this.search(this.state.search);
   };
 
   search = (value) => {
     const now = Date.now();
-    const results = Array.from(Array(3))
-      .map((_, i) => <SearchResult index={i} value={value} key={`${now}-${i}`} />);
+    const { companies } = this.state;
 
+    const results = companies.items
+      .map((company, i) => <SearchResult company={company} index={i} value={value} key={`${now}-${i}`} />);
+
+    results.unshift(
+      <Paper key="search_results" className="md-cell md-cell--12 toolbar-search__result md-background--card">
+        <h2>Search results for {value}</h2>
+        <h3>{companies.items_per_page} out of {companies.total_results}</h3>
+      </Paper>
+    )
     this.setState({ search: value, results });
   };
 
@@ -66,8 +73,6 @@ export default class SearchPage extends PureComponent {
               value={search}
               onFocus={this.startSearching}
               onChange={this.handleChange}
-              onKeyDown={this.handleKeyDown}
-              onAutocomplete={this.handleAutocomplete}
             />
           }
           className="search__toolbar md-background--card"

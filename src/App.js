@@ -67,7 +67,7 @@ export default class Simple extends PureComponent {
             contentClassName="md-grid"
           >
             <h2 className="md-cell md-cell--12">{page}</h2>
-            <section className="md-text-container md-cell md-cell--12">
+            <section className="md-cell md-cell--12">
               {content}
             </section>
           </NavigationDrawer>

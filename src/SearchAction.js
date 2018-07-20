@@ -10,7 +10,7 @@ const SearchAction = ({ searching, onClick, ...props }) => (
     type={searching ? 'reset' : 'button'}
     {...props}
   >
-    {searching ? 'close' : 'keyboard_voice'}
+    {searching ? 'close' : null}
   </Button>
 );
 

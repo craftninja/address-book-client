@@ -2,9 +2,7 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { Autocomplete } from 'react-md';
 
-import states from './constants/sampleData/states';
-
-const data = states.map(({ name }) => name);
+const data = [];
 
 export default class Search extends PureComponent {
   static propTypes = {
