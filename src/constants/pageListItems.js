@@ -1,6 +1,6 @@
 import React from 'react';
 import { FontIcon } from 'react-md';
-import BusinessesPage from '../BusinessesPage';
+import CompaniesPage from '../CompaniesPage';
 import OfficersPage from '../OfficersPage';
 import SearchPage from '../SearchPage';
 
@@ -14,9 +14,9 @@ export default [
   },
   { key: 'divider', divider: true },
   {
-    content: <BusinessesPage/>,
-    key: 'business',
-    primaryText: 'My Saved Businesses',
+    content: <CompaniesPage/>,
+    key: 'companies',
+    primaryText: 'My Saved Companies',
     leftIcon: <FontIcon>business</FontIcon>,
   },
   {
