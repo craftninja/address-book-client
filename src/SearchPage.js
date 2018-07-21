@@ -1,7 +1,7 @@
 /* eslint-disable react/no-array-index-key */
 import React, { PureComponent } from 'react';
 import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
-import { Paper, Toolbar } from 'react-md';
+import { Grid, Cell, Paper, Toolbar } from 'react-md';
 
 import './_styles.scss';
 import './SearchPage.css';
@@ -50,8 +50,13 @@ export default class SearchPage extends PureComponent {
       .map((company, i) => <SearchResult company={company} index={i} value={value} key={`${now}-${i}`} />);
 
     results.unshift(
-      <Paper key="search_results" className="md-cell md-cell--12 toolbar-search__result md-background--card">
-        <h3>{companies.items_per_page} out of {companies.total_results}</h3>
+      <Paper key="search_results" className="md-cell md-cell--12 toolbar-search__result md-background--card search-result__number-items">
+        <Grid
+          className="search-result__company-title"
+          onClick={this.showDetails}
+        >
+          <Cell size={4}><h3>{companies.items_per_page} out of {companies.total_results}</h3></Cell>
+        </Grid>
       </Paper>
     )
     this.setState({ search: value, results });

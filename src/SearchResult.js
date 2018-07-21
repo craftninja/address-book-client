@@ -58,7 +58,7 @@ export default class SearchResult extends Component {
     if (!detailsVisible) {
       return  (
         <Paper
-          className={`md-cell md-cell--12 toolbar-search__result md-background--card ${saved ? 'saved' : undefined }`}
+          className={`md-cell md-cell--12 toolbar-search__result md-background--card ${saved ? 'search-result__saved' : undefined }`}
         >
           <Grid
             className="search-result__company-title"
