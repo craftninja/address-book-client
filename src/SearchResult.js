@@ -5,7 +5,7 @@ import { Cell, FontIcon, Grid, Paper } from 'react-md';
 export default class SearchResult extends Component {
   constructor(props) {
     super(props);
-    this.state = { detailsVisible: false, officers: null }
+    this.state = { detailsVisible: false, officers: null, saved: false }
   }
   showDetails = async () => {
     const company_number = this.props.company.company_number;
@@ -16,16 +16,18 @@ export default class SearchResult extends Component {
         return response.json();
       })
       .then(function(officers) {
-        return officers.items
-          .map((officer, i) => {
-            return (
-              <Cell offset={1} size={11} key={`officer-${i}`} >
-                {officer.name}
-              </Cell>
-            )
-          });
+        return officers;
       }).catch(error => console.log("ERROR! ", error));
-    this.setState({ officers, detailsVisible: true });
+
+    const renderedOfficers = officers.items
+      .map((officer, i) => {
+        return (
+          <Cell offset={1} size={11} key={`officer-${i}`} >
+            {officer.name}
+          </Cell>
+        )
+      });
+    this.setState({ officers, renderedOfficers, detailsVisible: true });
   }
 
   hideDetails = () => {
@@ -33,16 +35,30 @@ export default class SearchResult extends Component {
   }
 
   save = () => {
-    console.log("SAVE");
+    fetch(`${process.env.REACT_APP_SERVER_URL}/companies`, {
+      method: 'POST',
+      mode: "cors",
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({
+        company: this.props.company,
+        officers: this.state.officers,
+      })
+    })
+      .then(function(response) {
+        return response.json();
+      })
+      .then(function(savedStuff) {
+      }).catch(error => console.log("ERROR! ", error));
+    this.setState({ saved: true });
   }
 
   render() {
-    const { detailsVisible, officers } = this.state;
+    const { detailsVisible, renderedOfficers, saved } = this.state;
     const { company } = this.props
     if (!detailsVisible) {
       return  (
         <Paper
-          className="md-cell md-cell--12 toolbar-search__result md-background--card"
+          className={`md-cell md-cell--12 toolbar-search__result md-background--card ${saved ? 'saved' : undefined }`}
         >
           <Grid
             className="search-result__company-title"
@@ -88,7 +104,7 @@ export default class SearchResult extends Component {
           <Cell size={12}>
             <h3>Officers:</h3>
           </Cell>
-          {officers}
+          {renderedOfficers}
         </Grid>
       </Paper>
     );
