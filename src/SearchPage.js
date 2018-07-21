@@ -51,7 +51,6 @@ export default class SearchPage extends PureComponent {
 
     results.unshift(
       <Paper key="search_results" className="md-cell md-cell--12 toolbar-search__result md-background--card">
-        <h2>Search results for {value}</h2>
         <h3>{companies.items_per_page} out of {companies.total_results}</h3>
       </Paper>
     )
