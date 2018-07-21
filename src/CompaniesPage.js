@@ -37,17 +37,17 @@ export default class CompaniesPage extends Component {
           <Grid
             className="company-page__company-title"
           >
-            <Cell size={12}><h3>{company.title}</h3></Cell>
-            <Cell size={12}>
-              <h4><b>Company number:</b></h4>
+            <Cell className="md-display-1" size={12}>{company.title}</Cell>
+            <Cell className="md-title" size={12}>
+              Company number:
             </Cell>
-            <Cell offset={1} size={11}>
+            <Cell className="md-subheading-2" offset={1} size={11}>
               {company.company_number}
             </Cell>
-            <Cell size={12}>
-              <h4><b>Address:</b></h4>
+            <Cell className="md-title" size={12}>
+              Address:
             </Cell>
-            <Cell offset={1} size={11}>
+            <Cell className="md-subheading-2" offset={1} size={11}>
               {company.address_snippet}
             </Cell>
           </Grid>

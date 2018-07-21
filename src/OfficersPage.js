@@ -37,11 +37,11 @@ export default class OfficerPage extends Component {
           <Grid
             className="officer-page__officer-name"
           >
-            <Cell size={12}><h3>{officer.name}</h3></Cell>
-            <Cell size={12}>
-              <h4><b>Company address:</b></h4>
+            <Cell className="md-display-1" size={12}>{officer.name}</Cell>
+            <Cell className="md-title" size={12}>
+              Company address:
             </Cell>
-            <Cell offset={1} size={11}>
+            <Cell className="md-subheading-2" offset={1} size={11}>
               {officer.company.address_snippet}
             </Cell>
           </Grid>

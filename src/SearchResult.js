@@ -22,7 +22,7 @@ export default class SearchResult extends Component {
     const renderedOfficers = officers.items
       .map((officer, i) => {
         return (
-          <Cell offset={1} size={11} key={`officer-${i}`} >
+          <Cell className="md-subheading-2" offset={1} size={11} key={`officer-${i}`} >
             {officer.name}
           </Cell>
         )
@@ -64,7 +64,7 @@ export default class SearchResult extends Component {
             className="search-result__company-title"
             onClick={this.showDetails}
           >
-            <Cell size={4}><h3>{company.title}</h3></Cell>
+            <Cell className="md-display-1" size={12}>{company.title}</Cell>
           </Grid>
         </Paper>
       );
@@ -77,7 +77,7 @@ export default class SearchResult extends Component {
           className="search-result__company-title"
           onClick={this.hideDetails}
         >
-          <Cell size={11}><h2>{company.title}</h2></Cell>
+          <Cell className="md-display-1" size={11}>{company.title}</Cell>
           <Cell size={1}>
             <FontIcon
               className="search-result__save"
@@ -87,22 +87,22 @@ export default class SearchResult extends Component {
               save_alt
             </FontIcon>
           </Cell>
-          <Cell size={12}>
-            <h3>Company number:</h3>
+          <Cell className="md-title" size={12}>
+            Company number:
           </Cell>
-          <Cell offset={1} size={11}>
+          <Cell className="md-subheading-2"  offset={1} size={11}>
             {company.company_number}
           </Cell>
-          <Cell size={12}>
-            <h3>Address:</h3>
+          <Cell className="md-title" size={12}>
+            Address:
           </Cell>
-          <Cell offset={1} size={11}>
+          <Cell className="md-subheading-2" offset={1} size={11}>
             {company.address_snippet}
           </Cell>
         </Grid>
         <Grid className="search-result__officer">
-          <Cell size={12}>
-            <h3>Officers:</h3>
+          <Cell className="md-title"  size={12}>
+            Officers:
           </Cell>
           {renderedOfficers}
         </Grid>
