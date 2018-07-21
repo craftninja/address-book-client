@@ -28,7 +28,7 @@ export default class SearchPage extends PureComponent {
     this.setState({ search: value });
     if (value.length < 3) { return }
 
-    const companies = await fetch(`http://localhost:3001/search?companies[name]=${value}`, {
+    const companies = await fetch(`${process.env.REACT_APP_SERVER_URL}/search?companies[name]=${value}`, {
       mode: "cors",
     })
       .then(function(response) {

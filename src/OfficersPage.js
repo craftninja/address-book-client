@@ -6,7 +6,7 @@ export default class OfficerPage extends Component {
 
   componentDidMount() {
     const that = this;
-    this._asyncRequest =  fetch(`http://localhost:3001/officers`, {
+    this._asyncRequest =  fetch(`${process.env.REACT_APP_SERVER_URL}/officers`, {
       mode: "cors",
     })
     .then(function(response) {
@@ -34,11 +34,17 @@ export default class OfficerPage extends Component {
           key={`officer-${officer.id}`}
           className="md-cell md-cell--12 officer-page__person md-background--card"
         >
-        <Grid className="grid-example">
-          <Cell size={4}>{officer.name}</Cell>
-          <Cell size={4}>{officer.company.address_snippet}</Cell>
-          <Cell size={4}></Cell>
-        </Grid>
+          <Grid
+            className="officer-page__officer-name"
+          >
+            <Cell size={12}><h3>{officer.name}</h3></Cell>
+            <Cell size={12}>
+              <h4><b>Company address:</b></h4>
+            </Cell>
+            <Cell offset={1} size={11}>
+              {officer.company.address_snippet}
+            </Cell>
+          </Grid>
         </Paper>
       )
     })

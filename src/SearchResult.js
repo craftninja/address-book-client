@@ -9,7 +9,7 @@ export default class SearchResult extends Component {
   }
   showDetails = async () => {
     const company_number = this.props.company.company_number;
-    const officers = await fetch(`http://localhost:3001/search?officers_for_company_id=${company_number}`, {
+    const officers = await fetch(`${process.env.REACT_APP_SERVER_URL}/search?officers_for_company_id=${company_number}`, {
       mode: "cors",
     })
       .then(function(response) {
