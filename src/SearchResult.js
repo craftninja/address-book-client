@@ -19,14 +19,14 @@ export default class SearchResult extends Component {
         return officers;
       }).catch(error => console.log("ERROR! ", error));
 
-    const renderedOfficers = officers.items
+    const renderedOfficers = officers && officers.items ? officers.items
       .map((officer, i) => {
         return (
           <Cell className="md-subheading-2" offset={1} size={11} key={`officer-${i}`} >
             {officer.name}
           </Cell>
         )
-      });
+      }) : undefined ;
     this.setState({ officers, renderedOfficers, detailsVisible: true });
   }
 
